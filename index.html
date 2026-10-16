@@ -2,242 +2,257 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timber & Form — Handcrafted Wooden Furniture</title>
-<meta name="description" content="Timber & Form crafts timeless solid-wood furniture: dining tables, beds, storage and bespoke commissions.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heartwood — Crafted to Last</title>
+<style>
+  /* ✏️ CHANGE COLORS HERE */
+  :root {
+    --bg: #1a1208;          /* page background (dark warm brown) */
+    --text: #f5e6d3;        /* cream text */
+    --accent: #c8853a;      /* amber button */
+    --accent-text: #ffffff; /* button text */
+    --shade: rgba(26, 18, 8, 0.55); /* soft backdrop behind text */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--bg); }
+  body { height: 500vh; background: var(--bg); color: var(--text);
+         font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  #scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  .vignette { position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 35%, var(--bg) 130%); }
+
+  .overlay { position: fixed; top: 50%; left: 50%; width: min(90vw, 760px);
+    text-align: center; opacity: 0; pointer-events: none;
+    transform: translate(-50%, calc(-50% + 24px));
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    padding: 2rem 1.5rem; border-radius: 24px;
+    background: radial-gradient(ellipse at center, var(--shade) 0%, transparent 70%);
+    text-shadow: 0 2px 18px rgba(0,0,0,.6); }
+  .overlay.active { opacity: 1; transform: translate(-50%, -50%); pointer-events: auto; }
+  h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: .01em; line-height: 1.05; }
+  h1 { font-size: clamp(3rem, 9vw, 6.5rem); }
+  h2 { font-size: clamp(2.4rem, 6.5vw, 4.5rem); }
+  .overlay p { margin-top: 1rem; font-size: clamp(.95rem, 2vw, 1.2rem); opacity: .88; letter-spacing: .04em; }
+  button { margin-top: 1.8rem; padding: .95rem 2.2rem; border: 0; border-radius: 999px; cursor: pointer;
+    background: var(--accent); color: var(--accent-text); font: 600 1rem system-ui, sans-serif;
+    transition: transform .25s ease, box-shadow .25s ease; box-shadow: 0 8px 24px rgba(200,133,58,.35); }
+  button:hover { transform: scale(1.05); }
+  button:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+  .hint { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); font-size: .8rem;
+    opacity: .6; transition: opacity .6s; pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) { .overlay { transition: opacity .01s; } html { scroll-behavior: auto; } }
+</style>
 </head>
 <body>
 
-<div class="grain" aria-hidden="true"></div>
+<canvas id="scene"></canvas>
+<div class="vignette"></div>
 
-<header class="site-header" id="top">
-  <div class="container nav-wrap">
-    <a class="brand" href="#top">
-      <span class="brand-mark" aria-hidden="true"></span>
-      Timber <em>&</em> Form
-    </a>
+<!-- ✏️ CHANGE TEXT HERE (section 1: scroll 0–25%) -->
+<section class="overlay" data-range="0,0.25">
+  <h1>Crafted to Last</h1>
+  <p>Premium Handmade Wooden Furniture</p>
+</section>
 
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#collections">Collections</a>
-      <a href="#craft">Craft</a>
-      <a href="#materials">Materials</a>
-      <a href="#showroom">Showroom</a>
-    </nav>
+<!-- ✏️ CHANGE TEXT HERE (section 2: scroll 25–50%) -->
+<section class="overlay" data-range="0.25,0.5">
+  <h2>Handmade in India</h2>
+  <p>Every joint tells a story</p>
+</section>
 
-    <a class="btn btn-dark" href="#contact">Book a visit</a>
-    <button class="menu-btn" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
-  </div>
-</header>
+<!-- ✏️ CHANGE TEXT HERE (section 3: scroll 50–75%) -->
+<section class="overlay" data-range="0.5,0.75">
+  <h2>The Collection</h2>
+  <p>Dining · Living · Reading</p>
+</section>
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Since 1998 · Ghaziabad, India</p>
-        <h1>
-          Furniture made<br>
-          <span class="serif-italic">to be lived with.</span>
-        </h1>
-        <p class="lead">
-          We build solid-wood pieces with quiet details, honest joinery and finishes that improve with age. No shortcuts. No mass production.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-dark" href="#collections">Explore collections</a>
-          <a class="link-arrow" href="#craft">See how we build <span aria-hidden="true">→</span></a>
-        </div>
+<!-- ✏️ CHANGE TEXT HERE (section 4: scroll 75–100%) -->
+<section class="overlay" data-range="0.75,1.01">
+  <h2>Shop Now</h2>
+  <!-- ✏️ CHANGE BUTTON HERE -->
+  <button onclick="alert('Link this button to your collection page!')">Explore Collection</button>
+</section>
 
-        <ul class="hero-stats">
-          <li><strong>27</strong><span>years of workshop practice</span></li>
-          <li><strong>100%</strong><span>seasoned hardwood frames</span></li>
-          <li><strong>10-yr</strong><span>structural warranty</span></li>
-        </ul>
-      </div>
+<div class="hint" id="hint">Scroll to enter</div>
 
-      <div class="hero-visual reveal">
-        <figure class="hero-photo">
-          <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80" alt="Warm wooden dining room with handcrafted furniture">
-        </figure>
-        <div class="hero-card">
-          <p class="small-label">Featured piece</p>
-          <h3>The Ashgrove Table</h3>
-          <p>Solid teak · hand-oiled finish</p>
-          <span class="price">₹78,500</span>
-        </div>
-      </div>
-    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
 
-    <div class="hero-marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Solid teak</span><i></i><span>Walnut veneer</span><i></i><span>Hand joinery</span><i></i><span>Natural oil finish</span><i></i><span>Bespoke sizing</span><i></i>
-        <span>Solid teak</span><i></i><span>Walnut veneer</span><i></i><span>Hand joinery</span><i></i><span>Natural oil finish</span><i></i><span>Bespoke sizing</span><i></i>
-      </div>
-    </div>
-  </section>
+/* ---------- Renderer / scene ---------- */
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-  <!-- COLLECTIONS -->
-  <section class="section" id="collections">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Collections</p>
-        <h2>Pieces for rooms that get used</h2>
-        <p>Each collection begins with how a family actually lives — meals, guests, storage, quiet evenings and everyday wear.</p>
-      </div>
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1a1208);
+scene.fog = new THREE.Fog(0x1a1208, 28, 60);
 
-      <div class="collection-grid">
-        <article class="product reveal">
-          <figure><img src="https://images.unsplash.com/photo-1538688423619-a81d3f23454b?auto=format&fit=crop&w=900&q=80" alt="Wooden dining table"></figure>
-          <div class="product-info">
-            <div><h3>Ashgrove Dining Table</h3><p>Solid teak · Seats six</p></div>
-            <span class="price">₹78,500</span>
-          </div>
-        </article>
+const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 100);
+camera.position.set(0, 5, 20);
 
-        <article class="product reveal">
-          <figure><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Wooden bed frame"></figure>
-          <div class="product-info">
-            <div><h3>Lowline Bed</h3><p>Sheesham · Queen / King</p></div>
-            <span class="price">₹54,900</span>
-          </div>
-        </article>
+/* ---------- Materials (wood-like palette) ---------- */
+const M = (c, r = 0.7, m = 0) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m });
+const oak = M(0xc68b4a), walnut = M(0x5b3a24, .6), tan = M(0xd9b27c), amber = M(0xe0a04a, .5),
+      leather = M(0x7a3b22, .45), darkWood = M(0x3d2615), floorMat = M(0xb48552, .8),
+      wall = M(0x8a6444, .9), rug = M(0x9c4a2f, 1),
+      glass = new THREE.MeshPhysicalMaterial({ color: 0xffe9c4, transparent: true, opacity: .22, roughness: .05, metalness: .1 }),
+      shade = new THREE.MeshStandardMaterial({ color: 0xffd9a0, emissive: 0xffb454, emissiveIntensity: .9, side: THREE.DoubleSide });
 
-        <article class="product reveal">
-          <figure><img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=900&q=80" alt="Wooden storage cabinet"></figure>
-          <div class="product-info">
-            <div><h3>Grain Sideboard</h3><p>Mango wood · Brass pulls</p></div>
-            <span class="price">₹42,000</span>
-          </div>
-        </article>
+function box(w, h, d, x, y, z, mat, parent = scene) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; parent.add(m); return m;
+}
+function cyl(rt, rb, h, x, y, z, mat, parent = scene, seg = 24, open = false) {
+  const m = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, seg, 1, open), mat);
+  m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; parent.add(m); return m;
+}
 
-        <article class="product reveal">
-          <figure><img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=900&q=80" alt="Wooden lounge chair"></figure>
-          <div class="product-info">
-            <div><h3>Arbour Lounge Chair</h3><p>Teak frame · Bouclé seat</p></div>
-            <span class="price">₹31,500</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+/* ---------- Diorama base: floor, walls ---------- */
+box(24, .6, 32, 0, -.3, -2, floorMat);               // floor slab
+box(26, .4, 34, 0, -.8, -2, darkWood);               // plinth
+box(.4, 7, 32, -12, 3.5, -2, wall);                  // left wall
+box(.4, 7, 32, 12, 3.5, -2, wall);                   // right wall
+box(24, 7, .4, 0, 3.5, -18, wall);                   // back wall
 
-  <!-- CRAFT -->
-  <section class="section craft" id="craft">
-    <div class="container craft-grid">
-      <div class="craft-media reveal">
-        <figure><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1100&q=80" alt="Carpenter working with wood in a workshop"></figure>
-      </div>
+/* Storefront (oak) with glass door at z = 10 */
+const FZ = 10;
+box(10.4, 7, .6, -6.8, 3.5, FZ, oak);                // left front
+box(10.4, 7, .6, 6.8, 3.5, FZ, oak);                 // right front
+box(3.6, 2.4, .6, 0, 5.8, FZ, oak);                  // lintel above door
+box(.25, 4.6, .5, -1.7, 2.3, FZ, walnut);            // door frame L
+box(.25, 4.6, .5, 1.7, 2.3, FZ, walnut);             // door frame R
+box(.1, 4.6, .3, 0, 2.3, FZ, walnut);                // door split
+box(1.6, 4.4, .08, -.85, 2.3, FZ, glass).castShadow = false;
+box(1.6, 4.4, .08, .85, 2.3, FZ, glass).castShadow = false;
+[-7, 7].forEach(x => { box(5, 3, .08, x, 3.2, FZ + .34, glass).castShadow = false; });   // shop windows
+// sign
+const sc = document.createElement('canvas'); sc.width = 512; sc.height = 128;
+const g = sc.getContext('2d'); g.fillStyle = '#3d2615'; g.fillRect(0, 0, 512, 128);
+g.fillStyle = '#f5e6d3'; g.font = '64px Georgia, serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+g.fillText('HEARTWOOD', 256, 66);   // ✏️ brand name on the shop sign
+const sign = new THREE.Mesh(new THREE.PlaneGeometry(3.4, .85), new THREE.MeshStandardMaterial({ map: new THREE.CanvasTexture(sc), emissive: 0x2a1a0a }));
+sign.position.set(0, 5.8, FZ + .32); scene.add(sign);
+box(3.8, .2, 1, 0, 4.7, FZ + .5, amber);             // awning ledge
 
-      <div class="craft-copy reveal">
-        <p class="eyebrow">The workshop</p>
-        <h2>Slow work, made visible</h2>
-        <p>
-          Our furniture is not assembled from panels and glue alone. Frames are seasoned, joints are cut by hand where it matters, and every surface is sanded through progressive grits before finishing.
-        </p>
+/* ---------- Lobby: walnut dining table + 4 chairs (center, z=3) ---------- */
+const rug1 = cyl(4.6, 4.6, .05, 0, .03, 3, rug, scene, 48); rug1.castShadow = false;
+box(4.2, .22, 2.4, 0, 1.6, 3, walnut);
+[[-1.8, -1], [1.8, -1], [-1.8, 1], [1.8, 1]].forEach(([x, z]) => box(.25, 1.5, .25, x, .8, 3 + z, walnut));
+function chair(x, z, rot) {
+  const c = new THREE.Group(); c.position.set(x, 0, z); c.rotation.y = rot;
+  box(1, .15, 1, 0, 1.05, 0, tan, c);
+  box(1, 1.1, .12, 0, 1.7, -.44, tan, c);
+  [[-.4, -.4], [.4, -.4], [-.4, .4], [.4, .4]].forEach(([a, b]) => box(.12, 1, .12, a, .5, b, oak, c));
+  scene.add(c);
+}
+chair(-1.1, 1.0, 0); chair(1.1, 1.0, 0);                          // near side (facing -z)
+chair(-1.1, 5.0, Math.PI); chair(1.1, 5.0, Math.PI);              // far side (facing +z)
+cyl(.35, .25, .4, 0, 1.92, 3, amber);                              // centerpiece bowl
 
-        <ol class="process">
-          <li class="reveal">
-            <span>01</span>
-            <div><h3>Select & season</h3><p>We choose boards for grain direction, stability and colour continuity.</p></div>
-          </li>
-          <li class="reveal">
-            <span>02</span>
-            <div><h3>Cut & join</h3><p>Mortise-and-tenon, dovetail and dowelled joints are selected by load and use.</p></div>
-          </li>
-          <li class="reveal">
-            <span>03</span>
-            <div><h3>Finish by hand</h3><p>Natural oils and waxes protect the timber while keeping its texture open.</p></div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </section>
+/* ---------- Living area (back): leather sofa + carved bookshelf ---------- */
+const rug2 = box(7, .05, 4.5, -2, .03, -6, rug); rug2.castShadow = false;
+const sofa = new THREE.Group(); sofa.position.set(-3.5, 0, -6.5);
+box(4.2, .6, 1.8, 0, .6, 0, darkWood, sofa);
+box(4.2, .9, .5, 0, 1.4, -.75, leather, sofa);
+box(.5, 1.2, 1.8, -1.85, .95, 0, leather, sofa);
+box(.5, 1.2, 1.8, 1.85, .95, 0, leather, sofa);
+box(1.6, .35, 1.3, -.8, 1.05, .1, leather, sofa);
+box(1.6, .35, 1.3, .8, 1.05, .1, leather, sofa);
+scene.add(sofa);
+const shelf = new THREE.Group(); shelf.position.set(5, 0, -7);
+box(3, 5.5, .8, 0, 2.75, 0, walnut, shelf);
+for (let i = 0; i < 4; i++) {
+  box(2.7, .12, .7, 0, 1 + i * 1.2, .06, oak, shelf);
+  let bx = -1.1;
+  while (bx < 1.1) {                                     // books
+    const w = .15 + Math.random() * .15, h = .7 + Math.random() * .3;
+    box(w, h, .45, bx, 1.06 + i * 1.2 + h / 2, .1, M([0x8b2e1f, 0x2f4a3a, 0xc8853a, 0x3a2a5a, 0xd9b27c][Math.floor(Math.random() * 5)]), shelf);
+    bx += w + .03;
+  }
+}
+box(3.4, .25, 1, 0, 5.6, 0, oak, shelf);                // carved cornice
+for (let i = -3; i <= 3; i++) cyl(.12, .12, .3, i * .42, 5.9, .3, amber, shelf, 12); // carved finials
+scene.add(shelf);
 
-  <!-- MATERIALS -->
-  <section class="section materials" id="materials">
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Materials</p>
-        <h2>Wood with a record</h2>
-        <p>We work with responsibly sourced hardwoods and finishes chosen for durability, repairability and a natural feel.</p>
-      </div>
+/* ---------- Reading nook (far back): armchair + floor lamp ---------- */
+const nr = cyl(2.6, 2.6, .05, 0, .03, -13, rug, scene, 40); nr.castShadow = false;
+const arm = new THREE.Group(); arm.position.set(0, 0, -13.2);
+box(1.9, .5, 1.7, 0, .75, 0, oak, arm);
+box(1.9, 1.9, .3, 0, 1.6, -.7, oak, arm);
+box(.3, 1.1, 1.7, -.95, 1.3, 0, walnut, arm);
+box(.3, 1.1, 1.7, .95, 1.3, 0, walnut, arm);
+box(1.4, .3, 1.3, 0, 1.15, .1, leather, arm);
+[[-.8, -.7], [.8, -.7], [-.8, .7], [.8, .7]].forEach(([a, b]) => box(.18, .5, .18, a, .25, b, darkWood, arm));
+scene.add(arm);
+cyl(.4, .4, .1, 2.8, .05, -13, darkWood);              // lamp base
+cyl(.06, .06, 4, 2.8, 2.05, -13, amber);               // lamp pole
+cyl(.45, .75, .9, 2.8, 4.3, -13, shade, scene, 24, true); // lamp shade
+box(1, 1.2, 1, -2.4, .6, -13, walnut);                 // side table
+cyl(.25, .3, .5, -2.4, 1.45, -13, tan);
 
-      <div class="material-grid">
-        <article class="material reveal">
-          <h3>Teak</h3>
-          <p>Dense, oil-rich and exceptionally stable. Ideal for dining tables and pieces exposed to daily use.</p>
-          <span class="tag">Signature</span>
-        </article>
-        <article class="material reveal">
-          <h3>Sheesham</h3>
-          <p>Rich Indian rosewood with pronounced grain. Excellent for beds, cabinets and statement storage.</p>
-          <span class="tag">Classic</span>
-        </article>
-        <article class="material reveal">
-          <h3>Mango wood</h3>
-          <p>Warm, sustainable and versatile. Used across sideboards, shelving and lighter occasional furniture.</p>
-          <span class="tag">Sustainable</span>
-        </article>
-        <article class="material reveal">
-          <h3>Natural oil</h3>
-          <p>A breathable finish that deepens the grain and can be locally repaired rather than replaced.</p>
-          <span class="tag">Repairable</span>
-        </article>
-      </div>
-    </div>
-  </section>
+/* ---------- Lighting (warm golden) ---------- */
+scene.add(new THREE.AmbientLight(0xffd9a8, .55));
+const sun = new THREE.DirectionalLight(0xffc98a, .6);
+sun.position.set(8, 16, 14); sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048); sun.shadow.radius = 4;
+Object.assign(sun.shadow.camera, { left: -20, right: 20, top: 20, bottom: -22, near: 1, far: 50 });
+scene.add(sun);
+function pl(x, y, z, i, d = 18, shadow = false) {
+  const l = new THREE.PointLight(0xffb454, i, d, 1.6); l.position.set(x, y, z); l.castShadow = shadow; scene.add(l); return l;
+}
+pl(0, 6, 8, 1.1); pl(0, 5.5, 3, 1.6, 16, true); pl(-2, 5.5, -6, 1.4, 16); pl(2.8, 4, -13, 1.8, 14, true); pl(0, 5, -12, .7);
 
-  <!-- SHOWROOM -->
-  <section class="section showroom" id="showroom">
-    <div class="container showroom-grid">
-      <div class="showroom-copy reveal">
-        <p class="eyebrow">Visit us</p>
-        <h2>See the grain before you decide</h2>
-        <p>Photographs cannot show weight, texture or the way light moves across oiled wood. Visit our Ghaziabad workshop to view current pieces and discuss a custom commission.</p>
+/* ---------- Camera path (CatmullRomCurve3) ---------- */
+const path = new THREE.CatmullRomCurve3([
+  new THREE.Vector3(0, 5, 20),       // outside storefront
+  new THREE.Vector3(0, 3.6, 12.5),   // approaching the glass door
+  new THREE.Vector3(0, 3.0, 6.5),    // through the door
+  new THREE.Vector3(0, 3.0, 0),      // over the dining table
+  new THREE.Vector3(.4, 2.7, -6),    // between sofa and bookshelf
+  new THREE.Vector3(0, 2.5, -9.5)    // reading nook
+], false, 'catmullrom', .5);
 
-        <div class="visit-details">
-          <div>
-            <p class="small-label">Workshop</p>
-            <p>Plot 24, Industrial Area<br>Ghaziabad, Uttar Pradesh</p>
-          </div>
-          <div>
-            <p class="small-label">Hours</p>
-            <p>Mon–Sat · 10:30 AM – 7:30 PM<br>Sunday by appointment</p>
-          </div>
-        </div>
+let target = 0, smooth = 0;
+const look = new THREE.Vector3(), pos = new THREE.Vector3(), tan_ = new THREE.Vector3();
+ScrollTrigger.create({
+  trigger: document.body, start: 'top top', end: 'bottom bottom',
+  onUpdate: s => { target = s.progress; }
+});
 
-        <a class="btn btn-outline" href="#contact">Request directions</a>
-      </div>
+/* ---------- Text overlays ---------- */
+const overlays = [...document.querySelectorAll('.overlay')].map(el => ({ el, r: el.dataset.range.split(',').map(Number) }));
+const hint = document.getElementById('hint');
+function updateText(p) {
+  overlays.forEach(({ el, r }) => el.classList.toggle('active', p >= r[0] && p < r[1]));
+  hint.style.opacity = p < .02 ? .6 : 0;
+}
 
-      <figure class="showroom-photo reveal">
-        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1100&q=80" alt="Warm furniture showroom interior">
-      </figure>
-    </div>
-  </section>
+/* ---------- Render loop ---------- */
+function frame() {
+  smooth += (target - smooth) * .08;                      // eased follow
+  const t = Math.min(Math.max(smooth, 0), 1);
+  path.getPoint(t, pos); camera.position.copy(pos);
+  path.getTangentAt(t, tan_);
+  // look slightly ahead on the path (tangent guarantees a valid target at the very end)
+  look.copy(path.getPoint(Math.min(t + .05, 1))).addScaledVector(tan_, 3);
+  look.y -= .35;
+  camera.lookAt(look);
+  updateText(target);
+  renderer.render(scene, camera);
+  requestAnimationFrame(frame);
+}
+frame();
 
-  <!-- CONTACT -->
-  <section class="section contact" id="contact">
-    <div class="container contact-grid">
-      <div class="contact-copy reveal">
-        <p class="eyebrow">Enquiries</p>
-        <h2>Start a commission</h2>
-        <p>Tell us the room, dimensions and wood you have in mind. We reply with material options, a rough budget and realistic delivery time.</p>
-      </div>
-
-      <form class="contact-form reveal" action="#" method="post">
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" placeholder="Your name" required>
-        </div>
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" placeholder="+91 00000 00000" required>
-        </div>
-        <div class="field">
-          <label for="piece">What are you looking for?</label>
-          <select id="piece" name="piece">
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>
